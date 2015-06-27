@@ -14,6 +14,13 @@ def gcd(m,n):
 
 class Fraction:
     def __init__(self, top, bottom):
+        assert isinstance(top, int), "the numerator should be an integer"
+        assert isinstance(bottom, int), "the denominator should be an integer"
+        assert bottom != 0, "the denominator should not be zero"
+        # allow negative denominator
+        if top / bottom < 0:
+            top = -abs(top)
+            bottom = abs(bottom)
         self.num = top
         self.den = bottom
         self._common = gcd(self.num, self.den)
@@ -53,8 +60,23 @@ class Fraction:
         other = Fraction(other.den, other.num)
         return self * other
 
+    def __gt__(self, other):
+        return self.num * other.den > other.num * self.den
+
+    def __ge__(self, other):
+        return self == other or self > other
+
+    def __lt__(self, other):
+        return not self > other
+
+    def __le__(self, other):
+        return self == other or self < other
+
     def __eq__(self, other):
         return self.num * other.den == self.den * other.num
+
+    def __ne__(self, other):
+        return not self == other
 
     """
     Implement the simple methods get_num and get_den that will return the numerator
@@ -71,7 +93,19 @@ if __name__ == "__main__":
     x = Fraction(1, 2)
     y = Fraction(2, 3)
     print(x + y)
-    print(x == y)
     print(x - y)
     print(x * y)
     print(x / y)
+    # False
+    print(x == y)
+    print(x > y)
+    print(x >= y)
+    # True
+    print(x < y)
+    print(x <= y)
+    print(x != y)
+
+    # x = Fraction(1.0, 1)
+    x = Fraction(1, -1)
+    print(x)
+    # x = Fraction(1,0)
