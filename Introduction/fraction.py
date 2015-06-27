@@ -46,6 +46,13 @@ class Fraction:
         common = gcd(new_num, new_den)
         return Fraction(new_num // common, new_den // common)
 
+    def __radd__(self, other):
+        return other + self
+
+    # x += y
+    def __iadd__(self, other):
+        raise NotImplementedError
+
     def __sub__(self, other):
         other = Fraction(-other.num, other.den)
         return self + other
@@ -109,3 +116,5 @@ if __name__ == "__main__":
     x = Fraction(1, -1)
     print(x)
     # x = Fraction(1,0)
+
+    # x += y
