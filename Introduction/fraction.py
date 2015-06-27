@@ -45,6 +45,12 @@ class Fraction:
         common = gcd(new_num, new_den)
         return Fraction(new_num // common, new_den // common)
 
+    def __mul__(self, other):
+        new_num = self.lowest_num * other.lowest_num
+        new_den = self.lowest_den * other.lowest_den
+        common = gcd(new_num, new_den)
+        return Fraction(new_num // common, new_den // common)
+
     def __eq__(self, other):
         return self.num * other.den == self.den * other.num
 
@@ -65,3 +71,4 @@ if __name__ == "__main__":
     print(x + y)
     print(x == y)
     print(x - y)
+    print(x * y)
