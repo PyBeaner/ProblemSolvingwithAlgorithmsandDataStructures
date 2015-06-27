@@ -40,16 +40,18 @@ class Fraction:
         return Fraction(new_num // common, new_den // common)
 
     def __sub__(self, other):
-        new_num = self.lowest_num * other.lowest_den - self.lowest_den * other.lowest_num
-        new_den = self.lowest_den * other.lowest_den
-        common = gcd(new_num, new_den)
-        return Fraction(new_num // common, new_den // common)
+        other = Fraction(-other.num, other.den)
+        return self + other
 
     def __mul__(self, other):
         new_num = self.lowest_num * other.lowest_num
         new_den = self.lowest_den * other.lowest_den
         common = gcd(new_num, new_den)
         return Fraction(new_num // common, new_den // common)
+
+    def __truediv__(self, other):
+        other = Fraction(other.den, other.num)
+        return self * other
 
     def __eq__(self, other):
         return self.num * other.den == self.den * other.num
@@ -72,3 +74,4 @@ if __name__ == "__main__":
     print(x == y)
     print(x - y)
     print(x * y)
+    print(x / y)
