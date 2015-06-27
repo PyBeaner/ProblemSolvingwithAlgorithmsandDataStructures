@@ -9,7 +9,7 @@ def timeit(func):
         result = func(*args, **kwargs)
         end = time.time()
         print("Finished the function:", func.__name__)
-        print("Elapsed:%.6f seconds" % (end - start))
+        print("Elapsed:%.10f seconds" % (end - start))
         return result
 
     return wrap
@@ -23,6 +23,11 @@ def sum_of_n(n):
 
     return the_sum
 
+@timeit
+def sum_of_n_3(n):
+    return n * (n + 1) / 2
+
 
 if __name__ == '__main__':
-    print(sum_of_n(10000))
+    sum_of_n(10000000)
+    sum_of_n_3(10000000)
