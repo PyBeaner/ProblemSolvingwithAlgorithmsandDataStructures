@@ -23,6 +23,29 @@ def solution2(s1, s2):
     return s1 == s2
 
 
+# O(n)
+def solution3(s1, s2):
+    counter1 = {}
+    counter2 = {}
+    # O(n)
+    for c in s1:
+        counter1.setdefault(c, 0)
+        counter1[c] += 1
+    # O(n)
+    for c in s2:
+        counter2.setdefault(c, 0)
+        counter2[c] += 1
+    for c in counter1:
+        # O(n)*1
+        if c not in counter2:
+            return False
+        # O(n)*1
+        if counter1[c] != counter2[c]:
+            return False
+    return True
+
+
 if __name__ == '__main__':
     print(solution1("abcd", "dcba"))
     print(solution2("abcd", "dcba"))
+    print(solution3("bdcd", "dcbd"))
