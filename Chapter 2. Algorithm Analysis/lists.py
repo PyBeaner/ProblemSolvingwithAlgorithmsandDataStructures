@@ -41,6 +41,16 @@ def test4():
     l = list(range(loops))
 
 
+@timeit
+def pop_end(l):
+    l.pop()
+
+
+@timeit
+def pop_n(l, n):
+    l.pop(n)
+
+
 if __name__ == '__main__':
     """
     Elapsed:0.2802040577 seconds on Function(test1)
@@ -52,3 +62,8 @@ if __name__ == '__main__':
     test2()
     test3()
     test4()
+
+    for length in (100000, 1000000, 10000000):
+        l = list(range(length))
+        pop_end(l)  # O(1)
+        pop_n(l, 102)  # o(n)
