@@ -4,12 +4,10 @@ import time
 
 def timeit(func):
     def wrap(*args, **kwargs):
-        print("Starts to run function:", func.__name__)
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        print("Finished the function:", func.__name__)
-        print("Elapsed:%.10f seconds" % (end - start))
+        print("Elapsed:%.10f seconds on Function(%s)" % (end - start,func.__name__))
         return result
 
     return wrap
