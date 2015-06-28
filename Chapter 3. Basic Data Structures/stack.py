@@ -20,6 +20,9 @@ class Stack:
         # O(1)
         return self.items.pop()
 
+    def reverse(self):
+        self.items.reverse()
+
     def __len__(self):
         return len(self.items)
 
